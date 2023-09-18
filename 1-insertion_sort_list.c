@@ -2,7 +2,7 @@
 
 /**
  * insertion_sort_list - a doubly linked list with
- * insertion sort algorithm
+ * insertion sort algorithm.
  * @list: double pointer to head of linked list
 */
 
