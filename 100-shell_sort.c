@@ -10,27 +10,36 @@
 
 void shell_sort(int *array, size_t size)
 {
-	size_t index, j, gap = 1;
-	int temp;
+	int tmp;
+	size_t index, gap, n;
+
+	gap = 1;
 
 	if (!array || size < 2)
 		return;
-
-	gap = gap * 3 + 1;
-	while (gap < size)
+	while (gap < size / 3)
+		gap = gap * 3 + 1;
+	while (gap > 0)
 	{
-		for (gap = gap * 3 + 1; gap > 0; gap = (gap - 1) / 3)
+		/* do a gapped insertion sort for this gap size. */
+		/* the first gap elements array[0..gap-1] are already in gapped order */
+		/* keep adding one more element until the entire array is gap sorted */
+		for (index = gap; index < size; index += 1)
 		{
-			for (index = gap; index < size; index++)
-			{
-				temp = array[index];
-				for (j = index; j >= gap && array[j - gap] > temp; j -= gap)
-					array[j] = array[j - gap];
-				array[j] = temp;
-			}
-			print_array(array, size);
+			/* add array[j] to the elements that have been gap sorted */
+			/* save array[j] in temp and make a hole at position j */
+			tmp = array[index];
+			/* shift earlier gap-sorted elements up until the correct */
+			/* location for array[j] is found */
+			for (n = index; n >= gap && tmp < array[n - gap]; n -= gap)
+				array[n] = array[n - gap];
+			/* put tmp (the original array[j]) in its correct location */
+			array[n] = tmp;
 		}
-		gap = (gap - 1) / 3;
+		/* decreasing the interval */
+		gap /= 3;
+		/*  print the array each time you decrease the interval */
+		print_array(array, size);
 	}
 }
 
