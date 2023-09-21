@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stddef.h>
 
-/** Structure */
+/****** Structure ******/
 
 /**
  * struct listint_s - Doubly linked list node
@@ -21,7 +22,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/**Prototypes*/
+/******Prototypes******/
 
 void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
@@ -31,5 +32,6 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
+void shell_sort(int *array, size_t size);
 
 #endif
